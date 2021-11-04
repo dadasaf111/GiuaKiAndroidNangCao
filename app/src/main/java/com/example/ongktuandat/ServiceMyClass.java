@@ -1,17 +1,15 @@
-package com.example.nguyentrongtien.service;
+package com.example.ongktuandat;
 
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
-/**
- * Created by Nguyen Trong Tien on 11/18/2017.
- */
+import androidx.annotation.Nullable;
+
 
 public class ServiceMyClass extends Service{
     SeekBar seekBar;
