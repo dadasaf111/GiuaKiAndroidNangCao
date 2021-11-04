@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -27,7 +28,7 @@ public class MainActivity2 extends AppCompatActivity implements  View.OnClickLis
     MediaPlayer mp;
     SeekBar seekBar;
     Handler handler = new Handler();
-    Button btnStart, btnStop, btnDisplay;
+    ImageButton btnStart, btnStop, btnDisplay;
     Button signOut;
     GoogleSignInClient mGoogleSignInClient;
     private CircleImageView circleImageView;
@@ -54,22 +55,22 @@ public class MainActivity2 extends AppCompatActivity implements  View.OnClickLis
             }
         });
 
-        btnStart = (Button) findViewById(R.id.btnStart);
-        btnStop = (Button) findViewById(R.id.btnStop);
-        btnDisplay =(Button) findViewById(R.id.btnDisplay);
+        btnStart =  findViewById(R.id.btnStart);
+        btnStop = findViewById(R.id.btnStop);
+//        btnDisplay =(Button) findViewById(R.id.btnDisplay);
         circleImageView = findViewById(R.id.amee);
 
         mp = MediaPlayer.create(this,R.raw.buonvuongmauao_nguyenhung);
+
 
         seekBar = (SeekBar) findViewById(R.id.layoutChinh);
         seekBar.setMax(mp.getDuration());
 
 
 
-
         btnStart.setOnClickListener(this);
         btnStop.setOnClickListener(this);
-        btnDisplay.setOnClickListener(this);
+//        btnDisplay.setOnClickListener(this);
     }
 
     @Override
@@ -95,11 +96,11 @@ public class MainActivity2 extends AppCompatActivity implements  View.OnClickLis
                 stopAnimation();
                 mp.stop();
                 break;
-            case R.id.btnDisplay:
-                Intent iDisplay =
-                        new Intent(MainActivity2.this, MainActivity3.class);
-                startActivity(iDisplay);
-                break;
+//            case R.id.btnDisplay:
+//                Intent iDisplay =
+//                        new Intent(MainActivity2.this, MainActivity3.class);
+//                startActivity(iDisplay);
+//                break;
 
         }
     }
