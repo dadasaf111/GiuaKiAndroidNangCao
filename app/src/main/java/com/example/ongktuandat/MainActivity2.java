@@ -36,6 +36,7 @@ public class MainActivity2 extends AppCompatActivity {
     private ServiceConnection serviceConnection;
     private boolean isConnected;
     private MyService myService;
+    private String pheptoan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,10 +83,12 @@ public class MainActivity2 extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(MainActivity2.this, "Signed Out Successfull", Toast.LENGTH_LONG).show();
+                        clickToStopService();
                         finish();
                     }
                 });
     }
+
 
     private void connectService() {
 
@@ -133,8 +136,8 @@ public class MainActivity2 extends AppCompatActivity {
 
                 kq.setText(kq.getText().toString() +result);
                 Toast.makeText(myService, "Result:" + result, Toast.LENGTH_SHORT).show();
-
-
+                pheptoan = "cong";
+                clickStartService();
             }
 
         });
@@ -154,6 +157,8 @@ public class MainActivity2 extends AppCompatActivity {
 
                 kq.setText(kq.getText().toString() +result);
                 Toast.makeText(myService, "Result:" + result, Toast.LENGTH_SHORT).show();
+                pheptoan = "tru";
+                clickStartService();
 
             }
         });
@@ -165,6 +170,7 @@ public class MainActivity2 extends AppCompatActivity {
                 if(!isConnected){
                     return;
                 }
+
                 kq.setText("");
                 int result = myService.multi(
                         Integer.parseInt(edtA.getText().toString()),
@@ -172,7 +178,8 @@ public class MainActivity2 extends AppCompatActivity {
 
                 kq.setText(kq.getText().toString() +result);
                 Toast.makeText(myService, "Result:" + result, Toast.LENGTH_SHORT).show();
-
+                pheptoan = "nhan";
+                clickStartService();
             }
         });
 
@@ -187,12 +194,23 @@ public class MainActivity2 extends AppCompatActivity {
                 int result = myService.div(
                         Integer.parseInt(edtA.getText().toString()),
                         Integer.parseInt(edtB.getText().toString()));
-
+                clickStartService();
                 kq.setText(kq.getText().toString() +result);
                 Toast.makeText(myService, "Result:" + result, Toast.LENGTH_SHORT).show();
-
+                pheptoan = "chia";
+                clickStartService();
             }
         });
+    }
+    private void clickStartService() {
+        Intent intent = new Intent(this, MyService.class);
+        intent.putExtra("key_data_intent", edtA.getText().toString().trim() + pheptoan +
+                edtB.getText().toString().trim() + "=" + kq.getText());
+        startService(intent);
+    }
+    private void clickToStopService() {
+        Intent intent = new Intent(this, MyService.class);
+        stopService(intent);
     }
 
     @Override
