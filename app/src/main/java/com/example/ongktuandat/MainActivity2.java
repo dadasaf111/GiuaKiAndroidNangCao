@@ -3,10 +3,13 @@ package com.example.ongktuandat;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
@@ -22,10 +25,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.concurrent.TimeUnit;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity2 extends AppCompatActivity implements  View.OnClickListener{
-    MediaPlayer mp;
+    public static MediaPlayer mp;
+    private AudioManager mAudioManager;
+    TextView playerDuration,playerPosition;
     SeekBar seekBar;
     Handler handler = new Handler();
     ImageButton btnStart, btnStop, btnDisplay;
@@ -55,17 +62,66 @@ public class MainActivity2 extends AppCompatActivity implements  View.OnClickLis
             }
         });
 
+        playerDuration =findViewById(R.id.playerDuaration);
+        playerPosition =findViewById(R.id.playerPosition);
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
         btnStart =  findViewById(R.id.btnStart);
         btnStop = findViewById(R.id.btnStop);
 //        btnDisplay =(Button) findViewById(R.id.btnDisplay);
         circleImageView = findViewById(R.id.amee);
 
-        mp = MediaPlayer.create(this,R.raw.buonvuongmauao_nguyenhung);
-
+        mp = MediaPlayer.create(this,R.raw.dendakhongduong);
+        playerDuration.setText(convertFormat(mp.getDuration()));
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mpl) {
+                mp.start();
+            }
+        });
 
         seekBar = (SeekBar) findViewById(R.id.layoutChinh);
         seekBar.setMax(mp.getDuration());
 
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                if (b){
+                    mp.seekTo(i);
+                    seekBar.setProgress(i);
+                }
+                playerPosition.setText(convertFormat(mp.getCurrentPosition()));
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (mp!= null){
+                    try {
+                        if(mp.isPlaying()){
+                            Message message = new Message();
+
+                            message.what = mp.getCurrentPosition();
+                            handler.sendMessage(message);
+                            Thread.sleep(1000);
+                        }
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
 
 
         btnStart.setOnClickListener(this);
@@ -80,7 +136,7 @@ public class MainActivity2 extends AppCompatActivity implements  View.OnClickLis
                 Intent iStartService =
                         new Intent(MainActivity2.this, ServiceMyClass.class);
                 startService(iStartService);
-                
+
                 starAnimation();
 
                 mp.start();
@@ -94,7 +150,7 @@ public class MainActivity2 extends AppCompatActivity implements  View.OnClickLis
                         new Intent(MainActivity2.this, ServiceMyClass.class);
                 stopService(iStopService);
                 stopAnimation();
-                mp.stop();
+                mp.pause();
                 break;
 //            case R.id.btnDisplay:
 //                Intent iDisplay =
@@ -133,7 +189,11 @@ public class MainActivity2 extends AppCompatActivity implements  View.OnClickLis
                 });
     }
 
-
+    private String convertFormat(int duration) {
+        return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(duration),
+                TimeUnit.MILLISECONDS.toSeconds(duration) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration)));
+    }
     public class UpdateSeekBar implements Runnable {
         @Override
         public void run(){
