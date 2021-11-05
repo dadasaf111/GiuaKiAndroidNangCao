@@ -35,8 +35,8 @@ public class MainActivity2 extends AppCompatActivity implements  View.OnClickLis
     TextView playerDuration,playerPosition;
     SeekBar seekBar;
     Handler handler = new Handler();
-    ImageButton btnStart, btnStop, btnDisplay;
-    Button signOut;
+    ImageView btnStart, btnStop, btnDisplay;
+    ImageView signOut;
     GoogleSignInClient mGoogleSignInClient;
     private CircleImageView circleImageView;
     @Override
