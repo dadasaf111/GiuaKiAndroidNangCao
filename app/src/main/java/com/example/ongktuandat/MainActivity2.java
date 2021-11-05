@@ -26,10 +26,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 public class MainActivity2 extends AppCompatActivity {
-    ImageButton btnAdd ,btnSub,btnMulti,btnDiv;
+    ImageView btnAdd ,btnSub,btnMulti,btnDiv;
     EditText edtA, edtB;
     TextView kq;
-    Button signOut;
+    ImageView signOut;
     ImageView imgAvatar;
     TextView textView_UserName;
     GoogleSignInClient mGoogleSignInClient;
@@ -113,10 +113,10 @@ public class MainActivity2 extends AppCompatActivity {
     }
     void initView()
     {
-        btnAdd =(ImageButton) findViewById(R.id.btnAdd);
-        btnSub =(ImageButton) findViewById(R.id.btnSub);
-        btnMulti =(ImageButton) findViewById(R.id.btnMulti);
-        btnDiv=(ImageButton) findViewById(R.id.btnDiv);
+        btnAdd = findViewById(R.id.btnAdd);
+        btnSub = findViewById(R.id.btnSub);
+        btnMulti = findViewById(R.id.btnMulti);
+        btnDiv= findViewById(R.id.btnDiv);
         edtA = (EditText) findViewById(R.id.edtA);
         edtB = (EditText) findViewById(R.id.edtB);
         kq = (TextView)findViewById(R.id.textViewKq) ;

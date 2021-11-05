@@ -4,34 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".MainActivity2">
 
-    <Button
+    <ImageView
         android:id="@+id/signOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
         android:layout_marginEnd="16dp"
         android:text="Log Out"
+        android:src="@drawable/signout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/edtA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="156dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:hint="Số a"
-        android:inputType="number"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -39,83 +23,102 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Số b"
         android:inputType="number"
         android:minHeight="48dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtA" />
 
+    <EditText
+        android:id="@+id/edtA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="Số a"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textViewKq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="152dp"
         android:gravity="center"
-        android:hint="Result "
+        android:hint="Kết Quả "
+        android:textColor="@color/white"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtB" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnAdd"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="108dp"
+        android:layout_marginStart="104dp"
         android:layout_marginTop="164dp"
-        android:src="@drawable/plus"
+        android:src="@drawable/cong"
         app:layout_constraintBottom_toTopOf="@+id/btnMulti"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtB"
-        app:layout_constraintVertical_bias="0.507" />
+        app:layout_constraintVertical_bias="0.15" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnSub"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="77dp"
+        android:layout_height="79dp"
         android:layout_marginTop="164dp"
         android:layout_marginEnd="104dp"
-        android:src="@drawable/minus"
+        android:src="@drawable/tru"
         app:layout_constraintBottom_toTopOf="@+id/btnDiv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtB"
-        app:layout_constraintVertical_bias="0.507" />
+        app:layout_constraintVertical_bias="0.059" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnDiv"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginEnd="104dp"
         android:layout_marginBottom="68dp"
-        android:src="@drawable/divide"
+        android:src="@drawable/chia"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnMulti"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginBottom="68dp"
-        android:src="@drawable/multiply"
+        android:src="@drawable/nhan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnDiv"
-        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintHorizontal_bias="0.724"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imgAvatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -124,11 +127,24 @@
         android:id="@+id/textView_AccGoogle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:hint="Name"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.436"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toEndOf="@+id/imgAvatar"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="221dp"
+        android:layout_height="49dp"
+        android:text="Chọn phép toán"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.604"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.52" />
 </androidx.constraintlayout.widget.ConstraintLayout>
