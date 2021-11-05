@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -25,13 +26,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MainActivity2 extends AppCompatActivity {
+    CircleImageView circleImageView;
     ImageView btnAdd ,btnSub,btnMulti,btnDiv;
     EditText edtA, edtB;
     TextView kq;
     ImageView signOut;
-    ImageView imgAvatar;
-    TextView textView_UserName;
     GoogleSignInClient mGoogleSignInClient;
     private ServiceConnection serviceConnection;
     private boolean isConnected;
@@ -45,8 +47,9 @@ public class MainActivity2 extends AppCompatActivity {
         initView();
         connectService();
 
-        textView_UserName = findViewById(R.id.textView_AccGoogle);
-        imgAvatar = findViewById(R.id.imgAvatar);
+        circleImageView = findViewById(R.id.maytinh);
+        startAnimation();
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -66,15 +69,22 @@ public class MainActivity2 extends AppCompatActivity {
                 }
             }
         });
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        if (acct != null) {
-            String personName = acct.getDisplayName();
-            Uri personPhoto = acct.getPhotoUrl();
+    }
 
-            textView_UserName.setText(personName);
+    private void startAnimation() {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                circleImageView.animate().rotationBy(360).withEndAction(this).setDuration(5000)
+                        .setInterpolator(new LinearInterpolator()).start();
+            }
+        };
+        circleImageView.animate().rotationBy(360).withEndAction(runnable).setDuration(5000)
+                .setInterpolator(new LinearInterpolator()).start();
+    }
 
-            Glide.with(this).load(String.valueOf(personPhoto)).into(imgAvatar);
-        }
+    private void stopAnimation(){
+        circleImageView.animate().cancel();
     }
 
     private void signOut() {
