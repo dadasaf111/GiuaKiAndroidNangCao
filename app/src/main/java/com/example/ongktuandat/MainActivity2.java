@@ -32,6 +32,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity2 extends AppCompatActivity implements  View.OnClickListener{
     public static MediaPlayer mp;
     private AudioManager mAudioManager;
+    Button btnGoogleMap;
     TextView playerDuration,playerPosition;
     SeekBar seekBar;
     Handler handler = new Handler();
@@ -59,6 +60,16 @@ public class MainActivity2 extends AppCompatActivity implements  View.OnClickLis
                         break;
                     // ...
                 }
+            }
+        });
+
+        btnGoogleMap = findViewById(R.id.google_map);
+        btnGoogleMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity2.this,MainActivity3.class);
+                startActivity(i);
+
             }
         });
 
